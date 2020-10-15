@@ -6,7 +6,7 @@ public class Client {
 
     public void SetClient(String name,String surname){
         if((name == null || surname == null) || (name.trim().length() < 1) || surname.trim().length() < 1){
-            throw new IllegalArgumentException(" Nane is not correct ");
+            throw new IllegalArgumentException(" Name is not correct ");
         }
         else {
             this.Name = name;
@@ -14,8 +14,10 @@ public class Client {
         }
     }
     public Client(){};
-    //Здесь методы генерации клиентов
+
     public Client(String name,String surname){
         SetClient(name, surname);
     }
+
+
 }

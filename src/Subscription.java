@@ -1,7 +1,7 @@
 abstract public class Subscription {
-private DaySub [] daySubs = new DaySub[20];
-private FullSub[] fullSubs = new FullSub[20];
-private OneSub[] oneSubs = new OneSub[20];
+//private DaySub [] daySubs = new DaySub[20];
+//private FullSub[] fullSubs = new FullSub[20];
+//private OneSub[] oneSubs = new OneSub[20];
 private Client client;
 private enum ZoneType{ POOL,GUM,GROUP};
 int VisitTime;
