@@ -17,11 +17,15 @@ private Client client;
      this.client = client;
      this.startDate = startDate;
      this.endDate = endDate;
+     SetOption();
+
+ }
+ void SetOption(){
      this.zoneType = zoneType;
      this.subscriptionType = subscriptionType;
  }
 
-
-
-
+    public ZoneType getZoneType() {
+        return zoneType;
+    }
 }

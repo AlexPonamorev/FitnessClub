@@ -13,7 +13,7 @@ public class Reception {
         if(subscriptionType == SubscriptionType.DAY) {startDate = 8; endDate = 16;};
 
 
-        return new Subscription(client,startDate, endDate,zoneType,subscriptionType);
+        return new Subscription(client,startDate, endDate,zoneType,subscriptionType); // вызов конструктора создания объекта
 
     }
 
