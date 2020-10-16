@@ -1,5 +1,10 @@
 // здесь создаю и заполняю поля заполняю поля абонимента.
 public class Reception {
+    Fitness fitness;
+
+
+
+
     Subscription subscribe(Client client,ZoneType zoneType,SubscriptionType subscriptionType){
        // проверки на тип абонимента
         if(subscriptionType == SubscriptionType.SINGLE && zoneType == ZoneType.GROUP)
@@ -13,8 +18,13 @@ public class Reception {
         if(subscriptionType == SubscriptionType.DAY) {startDate = 8; endDate = 16;};
 
 
-        return new Subscription(client,startDate, endDate,zoneType,subscriptionType); // вызов конструктора создания объекта
-
+         Subscription sub = new Subscription(client,startDate, endDate,zoneType,subscriptionType);
+         // вызов конструктора создания объекта
+        AddZone();
+return sub;
     }
+
+
+
 
 }

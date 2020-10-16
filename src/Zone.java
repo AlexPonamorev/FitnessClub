@@ -9,9 +9,11 @@ public class Zone {
     public void AddZone(Subscription subscription,ZoneType zoneType) {
         if (subscription.getZoneType() == zoneType) {
             for (int i = 0; i < subscriptions.length; ++i) {
-                if (subscriptions[i] == null) {
+                if (subscriptions[i] == null)
+                {
                     subscriptions[i] = subscription;
                 }
+                else
             }
         }
     }
