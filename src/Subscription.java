@@ -1,27 +1,27 @@
-abstract public class Subscription {
+public class Subscription {
 //private DaySub [] daySubs = new DaySub[20];
 //private FullSub[] fullSubs = new FullSub[20];
 //private OneSub[] oneSubs = new OneSub[20];
 private Client client;
-private enum ZoneType{ POOL,GUM,GROUP};
-    protected int StartDate;
-    protected int EndDate;
-    boolean Valid;
+//private enum ZoneType{ POOL,GUM,GROUP};
+    private ZoneType zoneType;
+    private SubscriptionType subscriptionType;
+    private int startDate;
+    private int endDate;
+
 
 // здесь протектед метод узнать активен ли абонимент в заданное время
     // на вход принимаю время - либо в качестве параметра либо системное
     // на выход false/ true
-    public void setInfo(ZoneType zoneType, Client client,int time){
-        // вызов конструктора для клиента ?
+ Subscription(Client client, int startDate, int endDate, ZoneType zoneType, SubscriptionType subscriptionType){
+     this.client = client;
+     this.startDate = startDate;
+     this.endDate = endDate;
+     this.zoneType = zoneType;
+     this.subscriptionType = subscriptionType;
+ }
 
-    }
 
-    protected  boolean IsValid(ZoneType zoneType, int VisitTime){
-        // методы
-        // отправляю время в классы
-        // получаю ответ ДА или НЕТ
-        return false;
-    }
 
 
 }
