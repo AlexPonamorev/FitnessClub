@@ -6,7 +6,7 @@ public class Fitness {
     private Zone pooL ;
     private Zone gyM;
     private Zone grouP;
-
+// а почему он серый ? как этот класс работает
     private Reception reception;
     private Subscription subscription ;
 
@@ -15,19 +15,19 @@ public class Fitness {
        gyM = new Zone();
        grouP = new Zone();
     }
-    // здесь хочу создать абонимент
-    public Subscription makesSub(Client client,ZoneType zoneType,SubscriptionType subscriptionType){
-      return reception.subscribe(client,zoneType,subscriptionType);
+
+    public void SetSubscription(Client client,ZoneType zoneType,SubscriptionType subscriptionType){
+      this.subscription = this.reception.subscribe(client,zoneType,subscriptionType);
     }
     // здесь нужно отправить чувака в определенную зону
     void AddZone(){
-      if (subscription.getZoneType() == ZoneType.POOL){
+      if (this.subscription.getZoneType() == ZoneType.POOL){
           pooL.AddZone(subscription,ZoneType.POOL);
       }
-        if (subscription.getZoneType() == ZoneType.GYM){
+        if (this.subscription.getZoneType() == ZoneType.GYM){
             pooL.AddZone(subscription,ZoneType.GYM);
         }
-        if (subscription.getZoneType() == ZoneType.GROUP){
+        if (this.subscription.getZoneType() == ZoneType.GROUP){
             pooL.AddZone(subscription,ZoneType.GROUP);
         }
     }
