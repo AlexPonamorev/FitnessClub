@@ -1,21 +1,22 @@
 public class Client {
-    private String Name;
-    private String Surname;
+    private String name;
+    private String surname;
+    private int year;
 
-
-    public void SetClient(String name,String surname){
+    public void SetClient(String name,String surname, int year){
         if((name == null || surname == null) || (name.trim().length() < 1) || surname.trim().length() < 1){
             throw new IllegalArgumentException(" Name is not correct ");
         }
         else {
-            this.Name = name;
-            this.Surname = surname;
+            this.name = name;
+            this.surname = surname;
+            this.year = year;
         }
     }
     public Client(){};
 
     public Client(String name,String surname){
-        SetClient(name, surname);
+        SetClient(name, surname,year);
     }
 
 
