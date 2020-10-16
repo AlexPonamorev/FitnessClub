@@ -4,11 +4,10 @@ abstract public class Subscription {
 //private OneSub[] oneSubs = new OneSub[20];
 private Client client;
 private enum ZoneType{ POOL,GUM,GROUP};
-int VisitTime;
+    protected int StartDate;
+    protected int EndDate;
+    boolean Valid;
 
-
-
-    int Valid;
 // здесь протектед метод узнать активен ли абонимент в заданное время
     // на вход принимаю время - либо в качестве параметра либо системное
     // на выход false/ true

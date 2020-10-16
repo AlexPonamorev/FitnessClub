@@ -1,4 +1,7 @@
 public class FullSub extends Subscription{
-    // здесь будет реализация метода времени посещения
-    // На вход принимаем время, на выход отдаем false/ true
+    protected boolean timeValid(int time){
+        if (time > 8 && time < 22)
+            return true;
+        else return false;
+    }
 }
