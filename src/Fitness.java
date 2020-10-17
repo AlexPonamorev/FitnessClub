@@ -2,57 +2,64 @@ public class Fitness {
     // абонимент проверяется фитнесом на валидность
     // где установит время?
     boolean Status;
-    //Client client,ZoneType zoneType,SubscriptionType subscriptionType
-    private Zone pooL;
-    private Zone gyM;
-    private Zone grouP;
-    // а почему он серый ? как этот класс работает
-    private Reception reception;
-    private Subscription subscription;
 
+    ZoneType zoneType;
+    SubscriptionType subscriptionType;
+
+    public void setZoneType(ZoneType zoneType) {
+        this.zoneType = zoneType;
+    }
+
+    public void setSubscriptionType(SubscriptionType subscriptionType) {
+        this.subscriptionType = subscriptionType;
+    }
+
+    //Client client,ZoneType zoneType,SubscriptionType subscriptionType
+    private Zone[] pooL;
+    private Zone[] gyM;
+    private Zone[] grouP;
+
+    // Здесь у фитнеса можно запросить желаемую зону
     public Zone getZone(ZoneType zoneType) {
         switch (zoneType) {
             case POOL:
-                return pooL;
+                return pooL[20];
             case GYM:
-                return gyM;
+                return gyM[20];
             case GROUP:
-                return grouP;
-            default: throw new IllegalArgumentException();
+                return grouP[20];
+            default:
+                throw new IllegalArgumentException();
         }
+    }
+
+    private Reception reception;
+
+    public void SetReception() {
+        reception = new Reception();
+    }
+
+    //private Subscription subscription;
+    // создаю ссылку на клиента когад клиент приходит в фитнесс - инициализирую ее клиентом в сеттере
+    private Client client;
+
+    public void SetClientANDZone(Client client) {
+        this.client = new Client();
+
+    }
+
+    // отправляю клиента на ресепшн с его пожеланиями
+    public void SetSubscribtion() {
+        reception.subscribe(this.client, this.zoneType, this.subscriptionType);
+    }
+    public void AdditionZone(){
+        reception.AdditionZone();
     }
 
 
     public Fitness() {
-        pooL = new Zone();
-        gyM = new Zone();
-        grouP = new Zone();
+        pooL = new Zone[20];
+        gyM = new Zone[20];
+        grouP = new Zone[20];
     }
-
-    public void SetSubscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
-        this.subscription = this.reception.subscribe(client, zoneType, subscriptionType);
-    }
-
-    // здесь нужно отправить чувака в определенную зону
-    void AddZone() {
-        if (this.subscription.getZoneType() == ZoneType.POOL) {
-            pooL.AddZone(subscription, ZoneType.POOL);
-        }
-        if (this.subscription.getZoneType() == ZoneType.GYM) {
-            pooL.AddZone(subscription, ZoneType.GYM);
-        }
-        if (this.subscription.getZoneType() == ZoneType.GROUP) {
-            pooL.AddZone(subscription, ZoneType.GROUP);
-        }
-    }
-
-
-// pool.subscribe() - метод узнать что в зоне есть места
-    //открыт - закрыт
-    // массив абонементов в тренажере
-    // массив абонементов в бассейне
-    // массив абонементов на груп. занятиях
-// фитнесс принимает время и клиента
-
-
 }
