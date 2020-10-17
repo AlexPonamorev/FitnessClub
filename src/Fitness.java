@@ -15,12 +15,12 @@ public class Fitness {
     }
 
     //Client client,ZoneType zoneType,SubscriptionType subscriptionType
-    private Zone[] pooL;
-    private Zone[] gyM;
-    private Zone[] grouP;
+    private Subscription[] pooL;
+    private Subscription[] gyM;
+    private Subscription[] grouP;
 
     // Здесь у фитнеса можно запросить желаемую зону
-    public Zone getZone(ZoneType zoneType) {
+    public Subscription getZone(ZoneType zoneType) {
         switch (zoneType) {
             case POOL:
                 return pooL[20];
@@ -58,8 +58,8 @@ public class Fitness {
 
 
     public Fitness() {
-        pooL = new Zone[20];
-        gyM = new Zone[20];
-        grouP = new Zone[20];
+        pooL = new Subscription[20];
+        gyM = new Subscription[20];
+        grouP = new Subscription[20];
     }
 }

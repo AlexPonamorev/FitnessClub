@@ -3,7 +3,7 @@ public class Zone {
     //public enum ZoneType{POOL,GUM,GROUP};
     int countClient = 0;
     // в зоне хранит массив на 20 абониментов
-    Subscription[] subscriptions = new Subscription[20];
+    Subscription[] subscriptions ;
 
     // метод чтобы записать абонимента в зону
 // если данные о зоне в абонементе == заявленной

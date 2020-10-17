@@ -10,7 +10,7 @@
 public class Reception {
     //private Fitness fitness;
     private Zone zone;
-
+    ZoneType zoneType;
     private Subscription subscription;
 
     void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
@@ -34,6 +34,6 @@ public class Reception {
     }
     // здесь по заполненному абонименту нужно записать его в выбранную зону
     void AdditionZone(){
-        zone.AddZone(this.subscription,fitness.getZone());
+        zone.AddZone(this.subscription, zoneType);
     }
 }
