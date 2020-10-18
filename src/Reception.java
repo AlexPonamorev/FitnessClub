@@ -5,13 +5,23 @@
 // пока этот случай не рассматривается
 
 // в итоге ему выдается абонемент - взависимости от его требований
+//T.E РЕСЕПШН СОЗДАЕТ АБОНИМЕНТ
+
 //далее на ресепшене проверим если свободные места в запрашиваемой зоне.
+// ТАК ЖЕ РЕСЕПШН ЗНАЕТ ПРО ФИТНЕСС(ХРАНИТ ССЫЛКУ НА НЕГО)
+
 
 public class Reception {
     //private Fitness fitness;
-    private Zone zone;
+
     ZoneType zoneType;
     private Subscription subscription;
+
+/*
+    public void Reception  (){
+        this.subscriptions = fitness.getZone(zoneType);
+    }
+    */
 
     void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         // проверки на тип абонимента
@@ -32,8 +42,10 @@ public class Reception {
         }
         this.subscription = new Subscription(client, startDate, endDate, zoneType, subscriptionType);
     }
-    // здесь по заполненному абонименту нужно записать его в выбранную зону
+
+    /*здесь по заполненному абонименту нужно записать его в выбранную зону
     void AdditionZone(){
-        zone.AddZone(this.subscription, zoneType);
-    }
+        whatZone.AddZone(this.subscription, zoneType);
+    }*/
+
 }

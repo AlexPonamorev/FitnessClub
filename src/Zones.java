@@ -1,9 +1,21 @@
-public class Zone {
-    //private Subscription []subscriptions;
-    //public enum ZoneType{POOL,GUM,GROUP};
+public class Zones {
+
     int countClient = 0;
-    // в зоне хранит массив на 20 абониментов
-    Subscription[] subscriptions ;
+    // зона знает про абонимент
+    // зона знает про фитнесс
+    // зона хранит три массива с знами
+
+   Subscription subscription;
+   Fitness fitness;
+   ZoneType zoneType;
+   // зона спрашивает у фитнеса куда сейчас записывать
+
+
+    private Subscription[] pooL;
+    private Subscription[] gyM;
+    private Subscription[] grouP;
+
+
 
     // метод чтобы записать абонимента в зону
 // если данные о зоне в абонементе == заявленной
