@@ -84,7 +84,7 @@ private SubscriptionType subscriptionType;
     private void addInArr(Subscription[] subscriptions, Subscription subscription){
         for (int i = 0; i < subscriptions.length; i++) {
             if (Objects.isNull(subscriptions[i])){
-                this.subscriptions[i] = new Subscription(client,zoneType,suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu);
+                subscriptions[i] = new Subscription(client,zoneType,subscriptionType);
                 return;
             }
         }
