@@ -125,12 +125,5 @@ public class Fitness {
     }
 
 
-/*
-    public Fitness() {
-        pooL = new Subscription[20];
-        gyM = new Subscription[20];
-        grouP = new Subscription[20];
-    }
-*/
 
 }

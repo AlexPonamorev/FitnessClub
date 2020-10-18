@@ -19,7 +19,6 @@ public class Subscription {
         this.client = client;
         setStartAndEndTime();
         SetOption();
-        this.currentDate = LocalDateTime.now();
     }
 
     public void SetOption() {
@@ -44,6 +43,12 @@ public class Subscription {
                 break;
         }
     }
+
+    public void setCurrentDate() {
+        this.currentDate = LocalDateTime.now();
+
+    }
+
     public int getStartTime(){
         return startTime.getHour();
     }

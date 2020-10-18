@@ -15,10 +15,6 @@ public class Zones {
     private Subscription[] gyM;
     private Subscription[] grouP;
 
-
-
-    // метод чтобы записать абонимента в зону
-// если данные о зоне в абонементе == заявленной
     public void AddZone(Subscription subscription, ZoneType zoneType) {
         if (subscription.getZoneType() == zoneType) {
             for (int i = 0; i < subscriptions.length; ++i) {
