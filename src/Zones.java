@@ -1,5 +1,12 @@
 import java.util.Objects;
+//  Посетитель не может пройти, если абонемент просрочен,
+//  если он пытается пройти в зону, которая не разрешена по его абонементу,
+ //  если в зоне нет свободных мест.
 
+ // Абонемент не может быть зарегистрирован одновременно в нескольких зонах.
+
+ // Реализовать возможность вывода информации о посетителях:
+ // сначала посетителях тренажерного зала, потом бассейна, потом групповых занятий.
 public class Zones {
 
     int countClient = 0;
@@ -8,7 +15,8 @@ public class Zones {
     // зона хранит три массива с знами
 
    Subscription subscription;
-   Fitness fitness;
+   Client client;
+   Reception reception;
    ZoneType zoneType;
    // зона спрашивает у фитнеса куда сейчас записывать
 
@@ -17,9 +25,9 @@ public class Zones {
     private Subscription[] gyM;
     private Subscription[] grouP;
 
-    Zones zones;
-    public  Zones(){
-        zones = new Zones();
+
+    public  Zones(Subscription subscription){
+
         this.pooL = new Subscription[MAX];
         this.gyM = new Subscription[MAX];
         this.grouP = new Subscription[MAX];

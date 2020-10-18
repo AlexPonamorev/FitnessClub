@@ -16,10 +16,13 @@ public class Fitness {
     // иначе никак, так как внешний интерфейс программ не знает ничего про класс Reception
     // и туда отправляем клиента
     // клиент по УСЛОВИЮ приходит на ресепшн со знанием зоны и рассисания ее работы (дельта времени)
-    public void subcribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
+    public void makeSubscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         this.reception = new Reception();
         reception.subscribe(client, zoneType);
-
+    }
+    // клиент приходит со своим абониментом и запрашивает зону
+    public void subscribeZone(Client client,SubscriptionType subscriptionType2){
+        this.zones = new Zones(reception);
     }
 
 

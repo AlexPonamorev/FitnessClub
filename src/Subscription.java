@@ -6,12 +6,7 @@ public class Subscription {
     private Client client;
     private ZoneType zoneType;
     private SubscriptionType subscriptionType;
-
-
-
-
     private LocalDateTime currentDate;
-
     private LocalTime startTime;
     private LocalTime endTime;
 

@@ -5,7 +5,7 @@
 // пока этот случай не рассматривается
 
 // в итоге ему выдается абонемент - взависимости от его требований
-//T.E РЕСЕПШН СОЗДАЕТ АБОНИМЕНТ
+//T.E РЕСЕПШН СОЗДАЕТ АБОНИМЕНТ И ХРАНИТ У СЕБЯ
 
 //далее на ресепшене проверим если свободные места в запрашиваемой зоне.
 // ТАК ЖЕ РЕСЕПШН ЗНАЕТ ПРО ФИТНЕСС(ХРАНИТ ССЫЛКУ НА НЕГО)
@@ -18,14 +18,14 @@ public class Reception {
 
     //ZoneType zoneType;
     private Subscription subscription;
-private Client client;
-private ZoneType zoneType;
-private SubscriptionType subscriptionType;
-/*
-    public void Reception  (){
-        this.subscriptions = fitness.getZone(zoneType);
-    }
-    */
+    private Client client;
+    private ZoneType zoneType;
+    private SubscriptionType subscriptionType;
+    /*
+        public void Reception  (){
+            this.subscriptions = fitness.getZone(zoneType);
+        }
+        */
 /*
     void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         // проверки на тип абонимента
@@ -52,24 +52,24 @@ private SubscriptionType subscriptionType;
     private Subscription[] gyM;
     private Subscription[] grouP;
 
-    public  Reception(){
+    public Reception() {
         this.pooL = new Subscription[MAX];
         this.gyM = new Subscription[MAX];
         this.grouP = new Subscription[MAX];
     }
 
-    public void subscribe(Client client,ZoneType zoneType2){
-        switch (zoneType2){
+    public void subscribe(Client client, ZoneType zoneType2) {
+        switch (zoneType2) {
             case GYM:
-                addInArr(gyM,subscription);
+                addInArr(gyM, subscription);
                 subscription.setCurrentDate();
                 break;
             case POOL:
-                addInArr(pooL,subscription);
+                addInArr(pooL, subscription);
                 subscription.setCurrentDate();
                 break;
             case GROUP:
-                addInArr(grouP,subscription);
+                addInArr(grouP, subscription);
                 subscription.setCurrentDate();
                 break;
             default:
@@ -77,13 +77,15 @@ private SubscriptionType subscriptionType;
         }
     }
 
-    private void addInArr(Subscription[] subscriptions, Subscription subscription){
+    private void addInArr(Subscription[] subscriptions, Subscription subscription) {
         for (int i = 0; i < subscriptions.length; i++) {
-            if (Objects.isNull(subscriptions[i])){
-                subscriptions[i] = new Subscription(client,zoneType,subscriptionType);
+            if (Objects.isNull(subscriptions[i])) {
+                subscriptions[i] = new Subscription(client, zoneType, subscriptionType);
+
                 return;
             }
         }
         System.out.println(Information.IS_CROWDED);
     }
+
 }
