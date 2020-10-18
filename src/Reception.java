@@ -59,10 +59,6 @@ private SubscriptionType subscriptionType;
     }
 
     public void subscribe(Client client,ZoneType zoneType2){
-       /* if (checkVisitTime(subscription)){
-            return;
-        }*/
-
         switch (zoneType2){
             case GYM:
                 addInArr(gyM,subscription);
@@ -90,21 +86,4 @@ private SubscriptionType subscriptionType;
         }
         System.out.println(Information.IS_CROWDED);
     }
-/*
-    private boolean checkVisitTime(Subscription subscription){
-        if (subscription.getCurrentHour() < subscription.getStartTime()){
-            System.out.println("В");
-            return true;
-        }else if (subscription.getCurrentHour() > subscription.getEndTime()){
-            System.out.println("Вы опоздали");
-            return true;
-        }
-        return false;
-    }*/
-
-    /*здесь по заполненному абонименту нужно записать его в выбранную зону
-    void AdditionZone(){
-        whatZone.AddZone(this.subscription, zoneType);
-    }*/
-
 }
