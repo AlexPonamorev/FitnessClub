@@ -10,6 +10,7 @@ public class Fitness {
     SubscriptionType subscriptionType;
     private Client client;
     private Reception reception;
+    private Zones zones;
 
     // здесь я создаю ресепшн
     // иначе никак, так как внешний интерфейс программ не знает ничего про класс Reception
@@ -17,18 +18,11 @@ public class Fitness {
     // клиент по УСЛОВИЮ приходит на ресепшн со знанием зоны и рассисания ее работы (дельта времени)
     public void subcribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         this.reception = new Reception();
-        reception.subscribe(client, zoneType, subscriptionType);
+        reception.subscribe(client, zoneType);
 
     }
 
-    public void SetClientANDZone(Client client) {
-        this.client = new Client();
 
-    }
 
-    // отправляю клиента на ресепшн с его пожеланиями
-    public void SetSubscribtion() {
-        reception.subscribe(this.client, this.zoneType, this.subscriptionType);
-    }
 
 }

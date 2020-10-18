@@ -11,18 +11,22 @@
 // ТАК ЖЕ РЕСЕПШН ЗНАЕТ ПРО ФИТНЕСС(ХРАНИТ ССЫЛКУ НА НЕГО)
 
 
+import java.util.Objects;
+
 public class Reception {
     //private Fitness fitness;
 
-    ZoneType zoneType;
+    //ZoneType zoneType;
     private Subscription subscription;
-
+private Client client;
+private ZoneType zoneType;
+private SubscriptionType subscriptionType;
 /*
     public void Reception  (){
         this.subscriptions = fitness.getZone(zoneType);
     }
     */
-
+/*
     void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         // проверки на тип абонимента
         if (subscriptionType == SubscriptionType.SINGLE && zoneType == ZoneType.GROUP)
@@ -42,6 +46,61 @@ public class Reception {
         }
         this.subscription = new Subscription(client, startDate, endDate, zoneType, subscriptionType);
     }
+*/
+    int MAX;
+    private Subscription[] pooL;
+    private Subscription[] gyM;
+    private Subscription[] grouP;
+
+    public  Reception(){
+        this.pooL = new Subscription[MAX];
+        this.gyM = new Subscription[MAX];
+        this.grouP = new Subscription[MAX];
+    }
+
+    public void subscribe(Client client,ZoneType zoneType2){
+       /* if (checkVisitTime(subscription)){
+            return;
+        }*/
+
+        switch (zoneType2){
+            case GYM:
+                addInArr(gyM,subscription);
+                subscription.setCurrentDate();
+                break;
+            case POOL:
+                addInArr(pooL,subscription);
+                subscription.setCurrentDate();
+                break;
+            case GROUP:
+                addInArr(grouP,subscription);
+                subscription.setCurrentDate();
+                break;
+            default:
+                throw new IllegalArgumentException(Information.INVALID_INPUT);
+        }
+    }
+
+    private void addInArr(Subscription[] subscriptions, Subscription subscription){
+        for (int i = 0; i < subscriptions.length; i++) {
+            if (Objects.isNull(subscriptions[i])){
+                this.subscriptions[i] = new Subscription(client,zoneType,suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu);
+                return;
+            }
+        }
+        System.out.println(Information.IS_CROWDED);
+    }
+/*
+    private boolean checkVisitTime(Subscription subscription){
+        if (subscription.getCurrentHour() < subscription.getStartTime()){
+            System.out.println("В");
+            return true;
+        }else if (subscription.getCurrentHour() > subscription.getEndTime()){
+            System.out.println("Вы опоздали");
+            return true;
+        }
+        return false;
+    }*/
 
     /*здесь по заполненному абонименту нужно записать его в выбранную зону
     void AdditionZone(){

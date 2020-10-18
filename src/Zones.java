@@ -24,8 +24,7 @@ public class Zones {
         this.gyM = new Subscription[MAX];
         this.grouP = new Subscription[MAX];
     }
-
-
+/*
     public void subscribe(Subscription subscription,ZoneType zoneType2){
         if (checkVisitTime(subscription)){
             return;
@@ -49,23 +48,22 @@ public class Zones {
         }
     }
 
-    private void addInArr(Subscription[] subscriptions, Subscription abonement){
+    private void addInArr(Subscription[] subscriptions, Subscription subscription){
         for (int i = 0; i < subscriptions.length; i++) {
             if (Objects.isNull(subscriptions[i])){
-                subscriptions[i] = abonement;
+                subscriptions[i] = subscription;
                 return;
             }
         }
         System.out.println(Information.IS_CROWDED);
     }
-
-
+*/
     private boolean checkVisitTime(Subscription subscription){
-        if (subscription.getCurrentDate() < subscription.getStartTime()){
-            System.out.println("Вам придется немного подождать");
+        if (subscription.getCurrentHour() < subscription.getStartTime()){
+            System.out.println("Вам придется подождать");
             return true;
-        }else if (subscription.getCurrentDate() > subscription.getEndTime()){
-            System.out.println("Вы опоздали, приходите завтра");
+        }else if (subscription.getCurrentHour() > subscription.getEndTime()){
+            System.out.println("Вы опоздали");
             return true;
         }
         return false;

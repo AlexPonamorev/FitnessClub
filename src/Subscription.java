@@ -15,7 +15,7 @@ public class Subscription {
     private LocalTime startTime;
     private LocalTime endTime;
 
-    protected Subscription(Client client, int startTime, int endTime, ZoneType zoneType, SubscriptionType subscriptionType) {
+    protected Subscription(Client client, ZoneType zoneType,SubscriptionType subscriptionType) {
         this.client = client;
         setStartAndEndTime();
         SetOption();
@@ -53,11 +53,12 @@ public class Subscription {
         return startTime.getHour();
     }
 
-    public int getCurrentDate() {
+    public int getCurrentHour() {
         return currentDate.getHour();
     }
 
     public int getEndTime() {
         return endTime.getHour();
     }
+
 }
