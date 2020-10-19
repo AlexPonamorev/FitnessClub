@@ -14,9 +14,6 @@
 import java.util.Objects;
 
 public class Reception {
-    //private Fitness fitness;
-
-    //ZoneType zoneType;
     private Subscription subscription;
     private Client client;
     private ZoneType zoneType;
@@ -47,10 +44,8 @@ public class Reception {
         // также в зависимости от типа абонимента  вносим в выдаваемый абонимент время по которому будут проводиться занятия
 
         this.subscription = new Subscription(client, zoneType, subscriptionType);
-    }
 
-    public void filing(ZoneType zoneType2, SubscriptionType subscriptionType) {
-        switch (zoneType2) {
+        switch (zoneType) {
             case GYM:
                 addInArr(gyMCardFile, personSubscribe);
                 //subscription.setCurrentDate();
@@ -67,8 +62,7 @@ public class Reception {
                 throw new IllegalArgumentException(Information.INVALID_INPUT);
         }
     }
-
-    // запись в картотеку зоны
+    // запись в картотеку нужной зоны
     private void addInArr(PersonSubscribe[] personSubscribe, PersonSubscribe personSubscribe) {
         for (int i = 0; i < personSubscribe.length; ++i) {
             if (Objects.isNull(personSubscribe[i])) {

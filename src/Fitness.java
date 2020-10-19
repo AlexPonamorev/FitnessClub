@@ -10,8 +10,8 @@ public class Fitness {
 
 
     public Fitness(){
-        this.zones = new Zones();
-        this.reception = new Reception();
+        this.zones = new Zones();// созданы три зоны
+        this.reception = new Reception(); // создана картотека
     }
     // клиент приходит на ресепшн и запрашивает абонемент с нужной зоной и желаеммым графиком
     public void makeSubscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
