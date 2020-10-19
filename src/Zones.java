@@ -37,7 +37,6 @@ public class Zones {
 
 
     public void Zones() {
-
         this.pooL = new Subscription[MAX];
         this.gyM = new Subscription[MAX];
         this.grouP = new Subscription[MAX];
