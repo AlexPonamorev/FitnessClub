@@ -1,18 +1,21 @@
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class Subscription {
 
     private Client client;
     private ZoneType zoneType;
     private SubscriptionType subscriptionType;
-    private LocalDateTime currentDate;
-    private LocalTime startTime;
-    private LocalTime endTime;
 
-    protected Subscription(Client client, ZoneType zoneType,SubscriptionType subscriptionType) {
+    private LocalDateTime currentDate;
+    private LocalTime startTime;  //начало возможного посещения
+    private LocalTime endTime;   // конец времени возможного посещения
+
+    protected Subscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
+        if (Objects.isNull(client))
+            throw new IllegalArgumentException(Information.OBJECT_IS_NULL);
         this.client = client;
-        setStartAndEndTime();
         SetOption();
     }
 
@@ -23,6 +26,10 @@ public class Subscription {
 
     public ZoneType getZoneType() {
         return zoneType;
+    }
+
+    public SubscriptionType getSubscriptionType() {
+        return subscriptionType;
     }
 
     private void setStartAndEndTime() {
@@ -44,11 +51,16 @@ public class Subscription {
 
     }
 
-    public int getStartTime(){
+    public void setValidity(LocalTime start, LocalTime end) {
+        this.startTime = start;
+        this.endTime = end;
+    }
+
+    public int getStartTime() {
         return startTime.getHour();
     }
 
-    public int getCurrentHour() {
+    public int getCurrent() {
         return currentDate.getHour();
     }
 

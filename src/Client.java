@@ -1,8 +1,11 @@
 public class Client {
-    private String name;
-    private String surname;
-    private int year;
+    protected String name;
+    protected String surname;
+    protected int year;
 
+    public Client(String name,String surname, int year){
+        SetClient(name,surname,year);
+    }
     public void SetClient(String name,String surname, int year){
         if((name == null || surname == null) || (name.trim().length() < 1) || surname.trim().length() < 1){
             throw new IllegalArgumentException(" Name is not correct ");

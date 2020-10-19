@@ -26,7 +26,7 @@ public class Zones {
     private Subscription[] grouP;
 
 
-    public  Zones(Subscription subscription){
+    public  void Zones(){
 
         this.pooL = new Subscription[MAX];
         this.gyM = new Subscription[MAX];
@@ -66,16 +66,24 @@ public class Zones {
         System.out.println(Information.IS_CROWDED);
     }
 */
-    private boolean checkVisitTime(Subscription subscription){
-        if (subscription.getCurrentHour() < subscription.getStartTime()){
-            System.out.println("Вам придется подождать");
-            return true;
-        }else if (subscription.getCurrentHour() > subscription.getEndTime()){
-            System.out.println("Вы опоздали");
-            return true;
-        }
-        return false;
-    }
+
+     private boolean isNoValidTime(Subscription subscription) {
+         if (subscription.getEndTime()< subscription.getCurrent() ||
+                 subscription.getStartTime() > subscription.getCurrent()) {
+             return true;
+         }
+         return false;
+     }
+
+
+     private boolean isNoValidZone(Subscription subscription) {
+         if (subscription.getSubscriptionType() == SubscriptionType.DAY && abonement.getClient().getPreference().equalsIgnoreCase(InfoMessage.POOL)) {
+             return true;
+         } else if (abonement.getAccess() == Access.ONE_TIME && abonement.getClient().getPreference().equalsIgnoreCase(InfoMessage.GROUP)) {
+             return true;
+         }
+         return false;
+     }
 
     boolean subscribe(Subscription subscription) {
         if (countClient < 20) {

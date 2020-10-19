@@ -20,47 +20,38 @@ public class Reception {
     private Subscription subscription;
     private Client client;
     private ZoneType zoneType;
+    String preference;
     private SubscriptionType subscriptionType;
-    /*
-        public void Reception  (){
-            this.subscriptions = fitness.getZone(zoneType);
-        }
-        */
-/*
+    private PersonSubscribe personSubscribe;
+
     void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         // проверки на тип абонимента
-        if (subscriptionType == SubscriptionType.SINGLE && zoneType == ZoneType.GROUP)
+        if (subscriptionType == SubscriptionType.SINGLE && zoneType == ZoneType.GROUP) // не могут посещать групу по разовому
             throw new RuntimeException(" клиенты могут посещать бассейн и тренажерный зал ");
-        if (subscriptionType == SubscriptionType.DAY && zoneType == ZoneType.POOL)
+        if (subscriptionType == SubscriptionType.DAY && zoneType == ZoneType.POOL) // не могут посещать бассейн по дневному
             throw new RuntimeException(" клиенты могут посещать тренажерный зал и групповые занятия");
         // также в зависимости от типа абонимента  вносим в выдаваемый абонимент время по которому будут проводиться занятия
-        int startDate = 0;
-        int endDate = 0;
-        if (subscriptionType == SubscriptionType.SINGLE) {
-            startDate = 8;
-            endDate = 22;
-        }
-        if (subscriptionType == SubscriptionType.DAY) {
-            startDate = 8;
-            endDate = 16;
-        }
-        this.subscription = new Subscription(client, startDate, endDate, zoneType, subscriptionType);
+
+        this.subscription = new Subscription(client, zoneType, subscriptionType);
     }
-*/
+
     int MAX;
     private Subscription[] pooL;
     private Subscription[] gyM;
     private Subscription[] grouP;
 
     public Reception() {
+       // subscription = new Subscription();
+       // personSubscribe = new PersonSubscribe();
         this.pooL = new Subscription[MAX];
         this.gyM = new Subscription[MAX];
         this.grouP = new Subscription[MAX];
     }
 
-    public void subscribe(Client client, ZoneType zoneType2) {
+    public void filing(Client client, ZoneType zoneType2,SubscriptionType subscriptionType) {
         switch (zoneType2) {
             case GYM:
+                personSubscribe = new PersonSubscribe(subscription,zoneType2);
                 addInArr(gyM, subscription);
                 subscription.setCurrentDate();
                 break;
@@ -76,7 +67,7 @@ public class Reception {
                 throw new IllegalArgumentException(Information.INVALID_INPUT);
         }
     }
-
+// приходит клиент д нужной зоны
     private void addInArr(Subscription[] subscriptions, Subscription subscription) {
         for (int i = 0; i < subscriptions.length; i++) {
             if (Objects.isNull(subscriptions[i])) {
