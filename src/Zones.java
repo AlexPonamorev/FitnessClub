@@ -44,6 +44,7 @@ public class Zones {
     }
 
     // етекущее время не попадает в период действия абониметна
+    // нужно посмотреть абонемент абонента
     private boolean isNoValidTime(Subscription subscription,Zones zones) {
         if (subscription.getEndTime() < zones.getCurrent() ||
                 subscription.getStartTime() > zones.getCurrent()) {
