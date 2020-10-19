@@ -75,8 +75,8 @@ public class Zones {
          return false;
      }
 
-
-     private boolean isNoValidZone(Subscription subscription) {
+/*
+     private boolean isNoValidZone(PersonSubscribe personSubscribe) {
          if (subscription.getSubscriptionType() == SubscriptionType.DAY && abonement.getClient().getPreference().equalsIgnoreCase(InfoMessage.POOL)) {
              return true;
          } else if (abonement.getAccess() == Access.ONE_TIME && abonement.getClient().getPreference().equalsIgnoreCase(InfoMessage.GROUP)) {
@@ -84,7 +84,7 @@ public class Zones {
          }
          return false;
      }
-
+*/
     boolean subscribe(Subscription subscription) {
         if (countClient < 20) {
             countClient++;
