@@ -20,9 +20,23 @@ public class Reception {
     private Subscription subscription;
     private Client client;
     private ZoneType zoneType;
-    String preference;
     private SubscriptionType subscriptionType;
     private PersonSubscribe personSubscribe;
+
+    public PersonSubscribe getPersonSubscribe() {
+        return this.personSubscribe;
+    }
+
+    int MAX;
+    private PersonSubscribe[] poolCardFile;
+    private PersonSubscribe[] gyMCardFile;
+    private PersonSubscribe[] grouPCardFile;
+
+    public Reception() {
+        this.poolCardFile = new PersonSubscribe[MAX];
+        this.gyMCardFile = new PersonSubscribe[MAX];
+        this.grouPCardFile = new PersonSubscribe[MAX];
+    }
 
     void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         // проверки на тип абонимента
@@ -35,45 +49,31 @@ public class Reception {
         this.subscription = new Subscription(client, zoneType, subscriptionType);
     }
 
-    int MAX;
-    private Subscription[] pooL;
-    private Subscription[] gyM;
-    private Subscription[] grouP;
-
-    public Reception() {
-       // subscription = new Subscription();
-       // personSubscribe = new PersonSubscribe();
-        this.pooL = new Subscription[MAX];
-        this.gyM = new Subscription[MAX];
-        this.grouP = new Subscription[MAX];
-    }
-
-    public void filing(Client client, ZoneType zoneType2,SubscriptionType subscriptionType) {
+    public void filing(ZoneType zoneType2, SubscriptionType subscriptionType) {
         switch (zoneType2) {
             case GYM:
-                personSubscribe = new PersonSubscribe(subscription,zoneType2);
-                addInArr(gyM, subscription);
-                subscription.setCurrentDate();
+                addInArr(gyMCardFile, personSubscribe);
+                //subscription.setCurrentDate();
                 break;
             case POOL:
-                addInArr(pooL, subscription);
-                subscription.setCurrentDate();
+                addInArr(poolCardFile, personSubscribe);
+                //subscription.setCurrentDate();
                 break;
             case GROUP:
-                addInArr(grouP, subscription);
-                subscription.setCurrentDate();
+                addInArr(grouPCardFile, personSubscribe);
+                //subscription.setCurrentDate();
                 break;
             default:
                 throw new IllegalArgumentException(Information.INVALID_INPUT);
         }
     }
-// приходит клиент д нужной зоны
-    private void addInArr(Subscription[] subscriptions, Subscription subscription) {
-        for (int i = 0; i < subscriptions.length; i++) {
-            if (Objects.isNull(subscriptions[i])) {
-                subscriptions[i] = new Subscription(client, zoneType, subscriptionType);
 
-                return;
+    // запись в картотеку зоны
+    private void addInArr(PersonSubscribe[] personSubscribe, PersonSubscribe personSubscribe) {
+        for (int i = 0; i < personSubscribe.length; ++i) {
+            if (Objects.isNull(personSubscribe[i])) {
+                personSubscribe[i] = new PersonSubscribe(this.subscription);
+                return; // else
             }
         }
         System.out.println(Information.IS_CROWDED);

@@ -8,7 +8,7 @@ public class Subscription {
     private ZoneType zoneType;
     private SubscriptionType subscriptionType;
 
-    private LocalDateTime currentDate;
+
     private LocalTime startTime;  //начало возможного посещения
     private LocalTime endTime;   // конец времени возможного посещения
 
@@ -46,10 +46,6 @@ public class Subscription {
         }
     }
 
-    public void setCurrentDate() {
-        this.currentDate = LocalDateTime.now();
-
-    }
 
     public void setValidity(LocalTime start, LocalTime end) {
         this.startTime = start;
@@ -60,9 +56,7 @@ public class Subscription {
         return startTime.getHour();
     }
 
-    public int getCurrent() {
-        return currentDate.getHour();
-    }
+
 
     public int getEndTime() {
         return endTime.getHour();

@@ -1,10 +1,6 @@
 import java.util.Objects;
 
 public class Fitness {
-    // абонимент проверяется фитнесом на валидность
-    // где установит время?
-    boolean Status;
-
     private ZoneType zoneType;
     private ZoneType zoneType2;
     SubscriptionType subscriptionType;
@@ -17,17 +13,17 @@ public class Fitness {
         this.zones = new Zones();
         this.reception = new Reception();
     }
-    // здесь я создаю ресепшн
-    // иначе никак, так как внешний интерфейс программ не знает ничего про класс Reception
-    // и туда отправляем клиента
-    // клиент по УСЛОВИЮ приходит на ресепшн со знанием зоны и рассисания ее работы (дельта времени)
+    // клиент приходит на ресепшн и запрашивает абонемент с нужной зоной и желаеммым графиком
     public void makeSubscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         reception.subscribe(client, zoneType,subscriptionType);
     }
     // клиент приходит со своим абониментом и запрашивает зону
     public void subscribeZone(Client client,SubscriptionType subscriptionType2){
-        zones.subscribe(client,subscriptionType2);
+        //zones.subscribe(client,zoneType2,subscriptionType2);
     }
+    //1 фитнесс должен прийти с клиентом N на ресепшн и узнать есть ли такой клиент в базе
+    //2 если есть то проверить на предмет совпадения запрашиваемой зоны и зоны в абонементе
+    //3 если совпадает то проверить вовремя ли он пришел
 
 
 
