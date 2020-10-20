@@ -7,8 +7,6 @@ public class Subscription {
     private Client client;
     private ZoneType zoneType;
     private SubscriptionType subscriptionType;
-
-
     private LocalTime startTime;  //начало возможного посещения
     private LocalTime endTime;   // конец времени возможного посещения
 
@@ -16,21 +14,18 @@ public class Subscription {
         if (Objects.isNull(client))
             throw new IllegalArgumentException(Information.OBJECT_IS_NULL);
         this.client = client;
-        SetOption();
-    }
-
-    public void SetOption() {
         this.zoneType = zoneType;
         this.subscriptionType = subscriptionType;
+        setStartAndEndTime();
     }
 
     public ZoneType getZoneType() {
         return zoneType;
     }
 
-    public SubscriptionType getSubscriptionType() {
-        return subscriptionType;
-    }
+    //public SubscriptionType getSubscriptionType() {
+     //   return subscriptionType;
+    //}
 
     private void setStartAndEndTime() {
         switch (this.subscriptionType) {
@@ -46,18 +41,9 @@ public class Subscription {
         }
     }
 
-
-    public void setValidity(LocalTime start, LocalTime end) {
-        this.startTime = start;
-        this.endTime = end;
-    }
-
     public int getStartTime() {
         return startTime.getHour();
     }
-
-
-
     public int getEndTime() {
         return endTime.getHour();
     }

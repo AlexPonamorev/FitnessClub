@@ -10,7 +10,6 @@
 //далее на ресепшене проверим если свободные места в запрашиваемой зоне.
 // ТАК ЖЕ РЕСЕПШН ЗНАЕТ ПРО ФИТНЕСС(ХРАНИТ ССЫЛКУ НА НЕГО)
 
-
 import java.util.Objects;
 
 public class Reception {
@@ -41,8 +40,8 @@ public class Reception {
             throw new RuntimeException(" клиенты могут посещать бассейн и тренажерный зал ");
         if (subscriptionType == SubscriptionType.DAY && zoneType == ZoneType.POOL) // не могут посещать бассейн по дневному
             throw new RuntimeException(" клиенты могут посещать тренажерный зал и групповые занятия");
-        // также в зависимости от типа абонимента  вносим в выдаваемый абонимент время по которому будут проводиться занятия
 
+        // также в зависимости от типа абонимента  вносим в выдаваемый абонимент время по которому будут проводиться занятия
         this.subscription = new Subscription(client, zoneType, subscriptionType);
 
         switch (zoneType) {
@@ -62,11 +61,12 @@ public class Reception {
                 throw new IllegalArgumentException(Information.INVALID_INPUT);
         }
     }
+
     // запись в картотеку нужной зоны
-    private void addInArr(PersonSubscribe[] personSubscribe, PersonSubscribe personSubscribe) {
-        for (int i = 0; i < personSubscribe.length; ++i) {
-            if (Objects.isNull(personSubscribe[i])) {
-                personSubscribe[i] = new PersonSubscribe(this.subscription);
+    private void addInArr(PersonSubscribe[] personSubscribes, PersonSubscribe personSubscribe) {
+        for (int i = 0; i < personSubscribes.length; ++i) {
+            if (Objects.isNull(personSubscribes[i])) {
+                personSubscribes[i] = new PersonSubscribe(this.subscription);
                 return; // else
             }
         }

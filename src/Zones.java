@@ -10,59 +10,81 @@ import java.util.Objects;
 // сначала посетителях тренажерного зала, потом бассейна, потом групповых занятий.
 public class Zones {
 
-    int countClient = 0;
-    static private LocalDateTime currentDate;
-/*
-    public void setCurrentDate() {
-        this.currentDate = LocalDateTime.now();
-    }*/
 
-    public static int getCurrent() {
-        return currentDate.getHour();
-    }
-    // зона знает про абонимент
-    // зона знает про фитнесс
-    // зона хранит три массива с знами
 
-    Subscription subscription;
-    Client client;
-    Reception reception;
+
+    private PersonSubscribe personSubscribe;
     ZoneType zoneType;
-    // зона спрашивает у фитнеса куда сейчас записывать
-
     private final int MAX = 20;
-    private Subscription[] pooL;
-    private Subscription[] gyM;
-    private Subscription[] grouP;
+    private PersonSubscribe[] pooL;
+    private PersonSubscribe[] gyM;
+    private PersonSubscribe[] grouP;
+    public int currentDate;
+// на зону приходит клиен и сообщает куда хочет попасть
+    public Zones() {
+        this.pooL = new PersonSubscribe[MAX];
+        this.gyM = new PersonSubscribe[MAX];
+        this.grouP = new PersonSubscribe[MAX];
 
-
-    public void Zones() {
-        this.pooL = new Subscription[MAX];
-        this.gyM = new Subscription[MAX];
-        this.grouP = new Subscription[MAX];
-        this.currentDate = LocalDateTime.now();
     }
 
-    // етекущее время не попадает в период действия абониметна
-    // нужно посмотреть абонемент абонента
-    private boolean isNoValidTime(Subscription subscription,Zones zones) {
-        if (subscription.getEndTime() < zones.getCurrent() ||
-                subscription.getStartTime() > zones.getCurrent()) {
+    // Проверка на то что тетекущее время попадает в период действия абонеметна
+    //
+    private boolean isNoValidTime(PersonSubscribe personSubscribe) { // не знаю как тут сработает Zones zones - ведь это ссылка
+        if (personSubscribe.getEndTime() < currentDate ||                     // можно попробовать
+                personSubscribe.getStartTime() > currentDate) {
             return true;
         }
         return false;
     }
-// здесь должен быть метод проверяющий, есть ли такой абонемент в базе клентов
-    private boolean isNoValidZone(PersonSubscribe personSubscribe) {
 
-         }
+    public void addAbonement(PersonSubscribe personSubscribe,ZoneType zoneType,int currentDate) {
+        //abonement.fixCurrentDate();
+        this.personSubscribe = personSubscribe;
+        this.zoneType = zoneType;
+        this.currentDate = currentDate;
 
-    boolean subscribe(Subscription subscription) {
-        if (countClient < 20) {
-            countClient++;
-            return true;
-        } else return false;
+        if (isNoValidTime(personSubscribe)) {
+            System.out.println(personSubscribe.toString() + " " + Information.NO_TIME);
+            return;
+        }
+        if (personSubscribe.getZoneType() != zoneType)
+            System.out.println(personSubscribe.toString() + " " + Information.NO_ENTRY);
 
+        if (personSubscribe.getZoneType() == ZoneType.GYM) {
+            detectClient(abonement, gym);
+            gym.addAbonement(personSubscribe.clientID);
+        } else if (personSubscribe.getZoneType() == ZoneType.GROUP) {
+            detectClient(abonement, group);
+            group.addAbonement(personSubscribe.clientID);
+        } else if (personSubscribe.getZoneType() == ZoneType.POOL) {
+            detectClient(abonement, pool);
+            pool.addAbonement(personSubscribe.clientID);
+        }
+    }
+/*
+    public void printInfoAboutClients() {
+        printClientsZone(gym);
+        printClientsZone(pool);
+        printClientsZone(group);
+    }
+*/
+    public void detectClient(PersonSubscribe personSubscribe, ZoneType zoneType) {
+        System.out.println(InfoMessage.FIX_CLIENT);
+        System.out.println("   Фамилия: " + abonement.getClient().getSurName()
+                + "\n   Имя: " + abonement.getClient().getName()
+                + "\n   Дата посещения фитнесс зала: " + abonement.getCurrentDate()
+                + "\n   Зона: " + zoneType);
     }
 
+
+    private void printClientsZone(Zone zone) {
+        for (int i = 0; i < zone.getAbonements().length; i++) {
+            if (Objects.nonNull(zone.getAbonements()[i])) {
+                System.out.println("Посетитель фитнес клуба------------------");
+                System.out.println(zone.getAbonements()[i].toString());
+                System.out.println();
+            }
+        }
+    }
 }
