@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Reception {
     private Subscription subscription;
     private Client client;
-    private ZoneType zoneType;
     private SubscriptionType subscriptionType;
     private Subscription[] subscriptions;
 
@@ -29,7 +28,6 @@ public class Reception {
 
     public void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         this.client = client;
-        this.zoneType = zoneType;
         this.subscriptionType = subscriptionType;
         // проверки на тип абонимента
         if (subscriptionType == SubscriptionType.SINGLE && zoneType == ZoneType.GROUP) // не могут посещать групу по разовому

@@ -4,8 +4,6 @@ import java.util.Objects;
 public class Fitness {
     private LocalDateTime currentDate;
     private int currentHour;
-    private ZoneType zoneType;
-    private ZoneType zoneType2;
     private SubscriptionType subscriptionType;
     private Client client;
     private Reception reception;
