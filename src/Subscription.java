@@ -12,8 +12,10 @@ public class Subscription {
     private LocalTime endTime;   // конец времени возможного посещения
     private int clientID;
 
-    public Subscription(){};
-    public Subscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType,int  clientID) {
+    public Subscription() {
+    }
+
+    public Subscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType, int clientID) {
         if (Objects.isNull(client))
             throw new IllegalArgumentException(Information.OBJECT_IS_NULL);
         this.client = client;
@@ -26,11 +28,12 @@ public class Subscription {
     public ZoneType getZoneType() {
         return zoneType;
     }
-    public  int getClientID(){
+
+    public int getClientID() {
         return clientID;
     }
     //public SubscriptionType getSubscriptionType() {
-     //   return subscriptionType;
+    //   return subscriptionType;
     //}
 
     private void setStartAndEndTime() {
@@ -50,10 +53,12 @@ public class Subscription {
     public int getStartTime() {
         return startTime.getHour();
     }
+
     public int getEndTime() {
         return endTime.getHour();
     }
-    public Client getClient(){
+
+    public Client getClient() {
         return client;
     }
 

@@ -5,4 +5,5 @@ public class Information {
     public static final String NO_TIME = " Вы пришли в неположенное время ";
     public static final String NO_ENTRY = " В данную зону по Вашему абонементу проити нельзя ";
     public static final String FIX_CLIENT = "Клиент зашел в фитнесс зал ---------------------- ";
+    public static final String ALREADY_HERE = " Посетитель уже есть на зоне ";
 }

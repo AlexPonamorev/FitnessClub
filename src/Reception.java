@@ -17,13 +17,13 @@ public class Reception {
     private Client client;
     private ZoneType zoneType;
     private SubscriptionType subscriptionType;
-
     private Subscription[] subscriptions;
+
     public Subscription getPersonSubscribe() {
         return this.subscription;
     }
 
-    public Reception(){
+    public Reception() {
         this.subscriptions = new Subscription[60];
     }
 
@@ -40,7 +40,7 @@ public class Reception {
 
         // также в зависимости от типа абонимента  вносим в выдаваемый абонимент время по которому будут проводиться занятия
         int clientID = (int) (Math.random() * 1000); // генерирует одну и ту же цепочку при каждом вызове- поэтому вызываю здесь
-        this.subscription = new Subscription(client, zoneType, subscriptionType,clientID);
+        this.subscription = new Subscription(client, zoneType, subscriptionType, clientID);
 
         for (int i = 0; i < subscriptions.length; ++i) {
             if (Objects.isNull(subscriptions[i])) {
@@ -49,47 +49,5 @@ public class Reception {
             }
         }
         System.out.println(Information.IS_CROWDED);
-
-/*
-        switch (zoneType) {
-            case GYM:
-                addInArr(gyMCardFile, personSubscribe);
-                //subscription.setCurrentDate();
-                break;
-            case POOL:
-                addInArr(poolCardFile, personSubscribe);
-                //subscription.setCurrentDate();
-                break;
-            case GROUP:
-                addInArr(grouPCardFile, personSubscribe);
-                //subscription.setCurrentDate();
-                break;
-            default:
-                throw new IllegalArgumentException(Information.INVALID_INPUT);
-        }*/
-
     }
-    /*
-    int MAX;
-    private PersonSubscribe[] poolCardFile;
-    private PersonSubscribe[] gyMCardFile;
-    private PersonSubscribe[] grouPCardFile;
-
-    public Reception() {
-        this.poolCardFile = new PersonSubscribe[MAX];
-        this.gyMCardFile = new PersonSubscribe[MAX];
-        this.grouPCardFile = new PersonSubscribe[MAX];
-    }
-    // запись в картотеку нужной зоны
-    private void addInArr(PersonSubscribe[] personSubscribes, PersonSubscribe personSubscribe) {
-        for (int i = 0; i < personSubscribes.length; ++i) {
-            if (Objects.isNull(personSubscribes[i])) {
-                personSubscribes[i] = new PersonSubscribe(this.subscription);
-                return; // else
-            }
-        }
-        System.out.println(Information.IS_CROWDED);
-    }
-*/
-
 }
