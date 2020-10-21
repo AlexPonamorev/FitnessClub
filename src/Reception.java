@@ -17,21 +17,16 @@ public class Reception {
     private Client client;
     private ZoneType zoneType;
     private SubscriptionType subscriptionType;
-    private PersonSubscribe personSubscribe;
-
-    public PersonSubscribe getPersonSubscribe() {
-        return this.personSubscribe;
+    //private PersonSubscribe personSubscribe;
+    private int clientID;
+    private Subscription[] subscriptions;
+    public Subscription getPersonSubscribe() {
+        return this.subscription;
     }
 
-    int MAX;
-    private PersonSubscribe[] poolCardFile;
-    private PersonSubscribe[] gyMCardFile;
-    private PersonSubscribe[] grouPCardFile;
-
-    public Reception() {
-        this.poolCardFile = new PersonSubscribe[MAX];
-        this.gyMCardFile = new PersonSubscribe[MAX];
-        this.grouPCardFile = new PersonSubscribe[MAX];
+    public Reception(int clientID){
+       this.clientID = clientID;
+       this.subscriptions = new Subscription[60];
     }
 
     void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
@@ -41,9 +36,19 @@ public class Reception {
         if (subscriptionType == SubscriptionType.DAY && zoneType == ZoneType.POOL) // не могут посещать бассейн по дневному
             throw new RuntimeException(" клиенты могут посещать тренажерный зал и групповые занятия");
 
-        // также в зависимости от типа абонимента  вносим в выдаваемый абонимент время по которому будут проводиться занятия
-        this.subscription = new Subscription(client, zoneType, subscriptionType);
 
+        // также в зависимости от типа абонимента  вносим в выдаваемый абонимент время по которому будут проводиться занятия
+        this.subscription = new Subscription(client, zoneType, subscriptionType,clientID);
+
+        for (int i = 0; i < subscriptions.length; ++i) {
+            if (Objects.isNull(subscriptions[i])) {
+                subscriptions[i] = this.subscription;
+                return; // else
+            }
+        }
+        System.out.println(Information.IS_CROWDED);
+
+/*
         switch (zoneType) {
             case GYM:
                 addInArr(gyMCardFile, personSubscribe);
@@ -59,9 +64,20 @@ public class Reception {
                 break;
             default:
                 throw new IllegalArgumentException(Information.INVALID_INPUT);
-        }
-    }
+        }*/
 
+    }
+    /*
+    int MAX;
+    private PersonSubscribe[] poolCardFile;
+    private PersonSubscribe[] gyMCardFile;
+    private PersonSubscribe[] grouPCardFile;
+
+    public Reception() {
+        this.poolCardFile = new PersonSubscribe[MAX];
+        this.gyMCardFile = new PersonSubscribe[MAX];
+        this.grouPCardFile = new PersonSubscribe[MAX];
+    }
     // запись в картотеку нужной зоны
     private void addInArr(PersonSubscribe[] personSubscribes, PersonSubscribe personSubscribe) {
         for (int i = 0; i < personSubscribes.length; ++i) {
@@ -72,5 +88,6 @@ public class Reception {
         }
         System.out.println(Information.IS_CROWDED);
     }
+*/
 
 }

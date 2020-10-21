@@ -1,3 +1,4 @@
+import java.sql.ClientInfoStatus;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -9,14 +10,16 @@ public class Subscription {
     private SubscriptionType subscriptionType;
     private LocalTime startTime;  //начало возможного посещения
     private LocalTime endTime;   // конец времени возможного посещения
+    private int clientID;
 
-    protected Subscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
+    protected Subscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType,int  clientID) {
         if (Objects.isNull(client))
             throw new IllegalArgumentException(Information.OBJECT_IS_NULL);
         this.client = client;
         this.zoneType = zoneType;
         this.subscriptionType = subscriptionType;
         setStartAndEndTime();
+        this.clientID = clientID;
     }
 
     public ZoneType getZoneType() {
@@ -46,6 +49,9 @@ public class Subscription {
     }
     public int getEndTime() {
         return endTime.getHour();
+    }
+    public Client getClient(){
+        return client;
     }
 
 }

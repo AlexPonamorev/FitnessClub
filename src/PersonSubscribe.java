@@ -17,17 +17,25 @@ public class PersonSubscribe {
     public ZoneType getZoneType() {
         return subscription.getZoneType();
     }
-    public int getStartTime(){
+
+    public int getStartTime() {
         return subscription.getStartTime();
     }
-    public int getEndTime(){
+
+    public int getEndTime() {
         return subscription.getEndTime();
     }
-    public String getNameString(){
+
+    public String getNameString() {
         return subscription.toString();
     }
+
+    public Client getClient() {
+        return subscription.getClient();
+    }
+
     @Override
-    public  String toString(){
-        return " Client " + subscription.toString();
+    public String toString() {
+        return " Client " + subscription.getClient().toString();
     }
 }

@@ -12,17 +12,19 @@ public class Fitness {
     private Client client;
     private Reception reception;
     private Zones zones;
-
+    private int clientID;
 
     public Fitness() {
         this.zones = new Zones();// созданы три зоны
-        this.reception = new Reception(); // создана картотека
+        this.reception = new Reception(clientID); // создана картотека
         this.currentDate = LocalDateTime.now();
+        this.clientID = (int) (Math.random() * 1000); // генерирует одну и ту же цепочку при каждом вызове- поэтому вызываю здесь
     }
 
     // клиент приходит на ресепшн и запрашивает абонемент с нужной зоной и желаеммым графиком
     public void makeSubscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         reception.subscribe(client, zoneType, subscriptionType);
+
     }
 
     // клиент приходит со своим абониментом и запрашивает зону

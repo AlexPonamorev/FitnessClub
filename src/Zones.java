@@ -9,22 +9,18 @@ import java.util.Objects;
 // Реализовать возможность вывода информации о посетителях:
 // сначала посетителях тренажерного зала, потом бассейна, потом групповых занятий.
 public class Zones {
-
-
-
-
     private PersonSubscribe personSubscribe;
     ZoneType zoneType;
     private final int MAX = 20;
-    private PersonSubscribe[] pooL;
-    private PersonSubscribe[] gyM;
-    private PersonSubscribe[] grouP;
+    private int[] pooL;
+    private int[] gyM;
+    private int[] grouP;
     public int currentDate;
 // на зону приходит клиен и сообщает куда хочет попасть
     public Zones() {
-        this.pooL = new PersonSubscribe[MAX];
-        this.gyM = new PersonSubscribe[MAX];
-        this.grouP = new PersonSubscribe[MAX];
+        this.pooL = new int[MAX];
+        this.gyM = new int[MAX];
+        this.grouP = new int[MAX];
 
     }
 
@@ -38,7 +34,7 @@ public class Zones {
         return false;
     }
 
-    public void addAbonement(PersonSubscribe personSubscribe,ZoneType zoneType,int currentDate) {
+    public void addPerson(PersonSubscribe personSubscribe,ZoneType zoneType,int currentDate) {
         //abonement.fixCurrentDate();
         this.personSubscribe = personSubscribe;
         this.zoneType = zoneType;
@@ -52,14 +48,14 @@ public class Zones {
             System.out.println(personSubscribe.toString() + " " + Information.NO_ENTRY);
 
         if (personSubscribe.getZoneType() == ZoneType.GYM) {
-            detectClient(abonement, gym);
-            gym.addAbonement(personSubscribe.clientID);
+            detectClient(personSubscribe, ZoneType.GYM);
+            addPerson(gyM,personSubscribe.clientID);
         } else if (personSubscribe.getZoneType() == ZoneType.GROUP) {
-            detectClient(abonement, group);
-            group.addAbonement(personSubscribe.clientID);
+            detectClient(personSubscribe, ZoneType.GROUP);
+            addPerson(grouP,personSubscribe.clientID);
         } else if (personSubscribe.getZoneType() == ZoneType.POOL) {
-            detectClient(abonement, pool);
-            pool.addAbonement(personSubscribe.clientID);
+            detectClient(personSubscribe, ZoneType.POOL);
+            addPerson(pooL,personSubscribe.clientID);
         }
     }
 /*
@@ -69,16 +65,26 @@ public class Zones {
         printClientsZone(group);
     }
 */
+// запись в картотеку нужной зоны
+private void addPerson(int [] clients, int ClientID) {
+    for (int i = 0; i < clients.length; ++i) {
+        if (Objects.isNull(clients[i])) {
+            clients[i] = ClientID;
+            return; // else
+        }
+    }
+    System.out.println(Information.IS_CROWDED);
+}
+
     public void detectClient(PersonSubscribe personSubscribe, ZoneType zoneType) {
-        System.out.println(InfoMessage.FIX_CLIENT);
-        System.out.println("   Фамилия: " + abonement.getClient().getSurName()
-                + "\n   Имя: " + abonement.getClient().getName()
-                + "\n   Дата посещения фитнесс зала: " + abonement.getCurrentDate()
+        System.out.println(Information.FIX_CLIENT);
+        System.out.println(personSubscribe.toString()
+                + "\n   Дата посещения фитнесс зала: " + currentDate
                 + "\n   Зона: " + zoneType);
     }
 
-
-    private void printClientsZone(Zone zone) {
+/*
+    private void printClientsZone() {
         for (int i = 0; i < zone.getAbonements().length; i++) {
             if (Objects.nonNull(zone.getAbonements()[i])) {
                 System.out.println("Посетитель фитнес клуба------------------");
@@ -86,5 +92,7 @@ public class Zones {
                 System.out.println();
             }
         }
-    }
+    }*/
+
+
 }

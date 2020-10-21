@@ -4,4 +4,5 @@ public class Information {
     public static final String OBJECT_IS_NULL = " объект не может быть пустым ";
     public static final String NO_TIME = " Вы пришли в неположенное время ";
     public static final String NO_ENTRY = " В данную зону по Вашему абонементу проити нельзя ";
+    public static final String FIX_CLIENT = "Клиент зашел в фитнесс зал ---------------------- ";
 }
