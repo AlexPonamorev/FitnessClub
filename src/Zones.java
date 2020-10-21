@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Zones {
@@ -118,5 +119,14 @@ public class Zones {
                 System.out.println();
             }
         }
+    }
+
+    public void closing(){
+        Arrays.fill(poolClients,null);
+        Arrays.fill(groupClients,null);
+        Arrays.fill(gumClients,null);
+        Arrays.fill(pooL,0);
+        Arrays.fill(gyM,0);
+        Arrays.fill(grouP,0);
     }
 }
