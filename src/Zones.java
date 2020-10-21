@@ -2,15 +2,15 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Zones {
-    ZoneType zoneType;
+    //ZoneType zoneType;
     private final int MAX = 20;
     private Client client;
     private int[] pooL;
     private int[] gyM;
     private int[] grouP;
-    Client[] poolClients;
-    Client[] gumClients;
-    Client[] groupClients;
+    private Client[] poolClients;
+    private Client[] gumClients;
+    private Client[] groupClients;
     public int currentDate;
 
     // на зону приходит клиен и сообщает куда хочет попасть
@@ -43,7 +43,7 @@ public class Zones {
 
     public void addPerson(Subscription subscription, ZoneType zoneType, int currentDate) {
 
-        this.zoneType = zoneType;
+        //this.zoneType = zoneType;
         this.currentDate = currentDate;
 
         if (isNoValidTime(subscription)) {

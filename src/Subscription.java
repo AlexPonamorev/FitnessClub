@@ -15,11 +15,12 @@ public class Subscription {
     public Subscription() {
     }
 
+    // какой здесь модификатора если иего будут использовать только другие классы но не из main?
     public Subscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType, int clientID) {
         if (Objects.isNull(client))
             throw new IllegalArgumentException(Information.OBJECT_IS_NULL);
         this.client = client;
-        this.zoneType = zoneType;
+        //this.zoneType = zoneType;
         this.subscriptionType = subscriptionType;
         setStartAndEndTime();
         this.clientID = clientID;
@@ -32,9 +33,6 @@ public class Subscription {
     public int getClientID() {
         return clientID;
     }
-    //public SubscriptionType getSubscriptionType() {
-    //   return subscriptionType;
-    //}
 
     private void setStartAndEndTime() {
         switch (this.subscriptionType) {
@@ -61,5 +59,8 @@ public class Subscription {
     public Client getClient() {
         return client;
     }
-
+    @Override
+    public String toString() {
+    return client.toString();
+    }
 }

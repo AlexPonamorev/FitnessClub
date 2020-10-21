@@ -27,7 +27,7 @@ public class Reception {
         this.subscriptions = new Subscription[60];
     }
 
-    void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
+    public void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         this.client = client;
         this.zoneType = zoneType;
         this.subscriptionType = subscriptionType;

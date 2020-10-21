@@ -11,7 +11,7 @@ public class Fitness {
     private Reception reception;
     private Zones zones;
     private Subscription subscription;
-    Information information;
+    private Information information;
 
     public Fitness() {
         this.zones = new Zones();// созданы три зоны

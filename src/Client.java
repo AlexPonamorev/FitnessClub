@@ -1,13 +1,13 @@
 public class Client {
-    protected String name;
-    protected String surname;
-    protected int year;
+    private String name;
+    private String surname;
+    private int year;
 
     public Client(String name, String surname, int year) {
         SetClient(name, surname, year);
     }
 
-    public void SetClient(String name, String surname, int year) {
+    private void SetClient(String name, String surname, int year) {
         if ((name == null || surname == null) || (name.trim().length() < 1) || surname.trim().length() < 1) {
             throw new IllegalArgumentException(" Name is not correct ");
         } else {
@@ -22,16 +22,12 @@ public class Client {
 
     ;
 
-    public Client(String name, String surname) {
-        SetClient(name, surname, year);
-    }
-
     @Override
     public String toString() {
-        return "Client{" +
-                "name='" + name + '\'' +
-                ", surName='" + surname + '\'' +
-                '}';
+        return "Клиент " +
+                "имя = " + name +
+                ", фамилия = " + surname +
+                ' ';
 
     }
 }
