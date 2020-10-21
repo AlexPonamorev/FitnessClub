@@ -2,9 +2,8 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Fitness {
-    public static LocalDateTime currentDate;
-
-
+    private LocalDateTime currentDate;
+    private int currentHour;
 
     private ZoneType zoneType;
     private ZoneType zoneType2;
@@ -12,70 +11,41 @@ public class Fitness {
     private Client client;
     private Reception reception;
     private Zones zones;
-    private int clientID;
+   // private int clientID;
+    private Subscription subscription;
 
     public Fitness() {
         this.zones = new Zones();// созданы три зоны
-        this.reception = new Reception(clientID); // создана картотека
+        this.reception = new Reception(); // создана картотека
         this.currentDate = LocalDateTime.now();
-        this.clientID = (int) (Math.random() * 1000); // генерирует одну и ту же цепочку при каждом вызове- поэтому вызываю здесь
+        this.currentHour = currentDate.getHour();
     }
 
     // клиент приходит на ресепшн и запрашивает абонемент с нужной зоной и желаеммым графиком
-    public void makeSubscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
+    public Subscription writeAndGiveMeNewSubscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
         reception.subscribe(client, zoneType, subscriptionType);
-
+        subscription = new Subscription();
+        subscription  = reception.getPersonSubscribe();
+        return subscription;
     }
 
     // клиент приходит со своим абониментом и запрашивает зону
-    public void subscribeZone(PersonSubscribe personSubscribe, ZoneType zoneType) {
-        //zones.subscribe(client,zoneType2,subscriptionType2);
+    public void addPerson(Subscription subscription, ZoneType zoneType,int currentHour) {
+        int ID = subscription.getClientID();// запрашиваю ID клиента
+        if (zones.checkingForAvailability(ID)){
+           System.out.println(" посетитель уже есть на зоне ");
+           return;
+        }
+        else zones.addPerson(subscription,zoneType,currentHour);
+
+        // проверяю есть ли клиент с таким ID уже на зоне
+        //for(int i )
+
+
     }
     //1 фитнесс должен прийти с клиентом N на ресепшн и узнать есть ли такой клиент в базе
     //2 если есть то проверить на предмет совпадения запрашиваемой зоны и зоны в абонементе
     //3 если совпадает то проверить вовремя ли он пришел
 }
 
-/*
-    enum Priority{
-        HIGT(100),MIDDLE(100); // момент создания объекта - если параметры не заданы то
-         private  int code; // если поле будет паблик то можно обращаться к полю без всяких сеттеров и геттеров
 
-         Priority (int code){
-             this.code = code;
-         }
-
-         public int getCode(){ // достиупен все объекта перечисления
-             return code;
-         }
-
-        public void setCode(int code) { // достиупен все объекта перечисления вызываются для каждого члена перечесления
-            this.code = code;
-        }
-    }
-
-    class SomeClass{
-        private  EnumInClass enumInClass;
-
-        public SomeClass (EnumInClass enumInClass){
-            this.enumInClass = enumInClass;
-        }
-
-        public enum EnumInClass{
-            ONE,TWO,TREE
-        }
-    }
-
-}
-
-/*
-Country byString = Country.valueOf("USA"); // вернет Country.USA - если такое значение есть в перечислении либо исключение
-String countryName = Country.AUSTRALIA.name();
-  System.out.print(countryName)// приведение к строке
-
-в enum можем добавлять конструкторы
-геттеры и сеттеры - будут без реализации и доступны всем членам перечесления
-
-
-
- */

@@ -9,8 +9,9 @@ import java.util.Objects;
 // Реализовать возможность вывода информации о посетителях:
 // сначала посетителях тренажерного зала, потом бассейна, потом групповых занятий.
 public class Zones {
-    private PersonSubscribe personSubscribe;
+    //private PersonSubscribe personSubscribe;
     ZoneType zoneType;
+   // Subscription subscription;
     private final int MAX = 20;
     private int[] pooL;
     private int[] gyM;
@@ -26,36 +27,43 @@ public class Zones {
 
     // Проверка на то что тетекущее время попадает в период действия абонеметна
     //
-    private boolean isNoValidTime(PersonSubscribe personSubscribe) { // не знаю как тут сработает Zones zones - ведь это ссылка
-        if (personSubscribe.getEndTime() < currentDate ||                     // можно попробовать
-                personSubscribe.getStartTime() > currentDate) {
+    private boolean isNoValidTime(Subscription subscription) { // не знаю как тут сработает Zones zones - ведь это ссылка
+        if (subscription.getEndTime() < currentDate ||                     // можно попробовать
+                subscription.getStartTime() > currentDate) {
             return true;
         }
         return false;
     }
 
-    public void addPerson(PersonSubscribe personSubscribe,ZoneType zoneType,int currentDate) {
-        //abonement.fixCurrentDate();
-        this.personSubscribe = personSubscribe;
+    public boolean checkingForAvailability(int ID){
+        for (int i = 0; i< pooL.length; ++i){
+            if(pooL[i] == ID) return true;
+            if(gyM[i] == ID) return true;
+            if (grouP[i] == ID) return true;
+        }
+        return false;
+    }
+    public void addPerson(Subscription subscription,ZoneType zoneType,int currentDate) {
+
         this.zoneType = zoneType;
         this.currentDate = currentDate;
 
-        if (isNoValidTime(personSubscribe)) {
-            System.out.println(personSubscribe.toString() + " " + Information.NO_TIME);
+        if (isNoValidTime(subscription)) {
+            System.out.println(subscription.toString() + " " + Information.NO_TIME);
             return;
         }
-        if (personSubscribe.getZoneType() != zoneType)
-            System.out.println(personSubscribe.toString() + " " + Information.NO_ENTRY);
+        if (subscription.getZoneType() != zoneType)
+            System.out.println(subscription.toString() + " " + Information.NO_ENTRY);
 
-        if (personSubscribe.getZoneType() == ZoneType.GYM) {
-            detectClient(personSubscribe, ZoneType.GYM);
-            addPerson(gyM,personSubscribe.clientID);
-        } else if (personSubscribe.getZoneType() == ZoneType.GROUP) {
-            detectClient(personSubscribe, ZoneType.GROUP);
-            addPerson(grouP,personSubscribe.clientID);
-        } else if (personSubscribe.getZoneType() == ZoneType.POOL) {
-            detectClient(personSubscribe, ZoneType.POOL);
-            addPerson(pooL,personSubscribe.clientID);
+        if (subscription.getZoneType() == ZoneType.GYM) {
+            detectClient(subscription, ZoneType.GYM);
+            addPerson(gyM,subscription.getClientID());
+        } else if (subscription.getZoneType() == ZoneType.GROUP) {
+            detectClient(subscription, ZoneType.GROUP);
+            addPerson(grouP,subscription.getClientID());
+        } else if (subscription.getZoneType() == ZoneType.POOL) {
+            detectClient(subscription, ZoneType.POOL);
+            addPerson(pooL,subscription.getClientID());
         }
     }
 /*
@@ -65,6 +73,9 @@ public class Zones {
         printClientsZone(group);
     }
 */
+   // public int getClientID (Subscription subscription){
+   //     return subscription.getClientID();
+  //  }
 // запись в картотеку нужной зоны
 private void addPerson(int [] clients, int ClientID) {
     for (int i = 0; i < clients.length; ++i) {
@@ -76,9 +87,9 @@ private void addPerson(int [] clients, int ClientID) {
     System.out.println(Information.IS_CROWDED);
 }
 
-    public void detectClient(PersonSubscribe personSubscribe, ZoneType zoneType) {
+    public void detectClient(Subscription subscription, ZoneType zoneType) {
         System.out.println(Information.FIX_CLIENT);
-        System.out.println(personSubscribe.toString()
+        System.out.println(subscription.toString()
                 + "\n   Дата посещения фитнесс зала: " + currentDate
                 + "\n   Зона: " + zoneType);
     }

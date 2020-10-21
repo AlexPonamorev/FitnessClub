@@ -17,19 +17,20 @@ public class Reception {
     private Client client;
     private ZoneType zoneType;
     private SubscriptionType subscriptionType;
-    //private PersonSubscribe personSubscribe;
-    private int clientID;
+
     private Subscription[] subscriptions;
     public Subscription getPersonSubscribe() {
         return this.subscription;
     }
 
-    public Reception(int clientID){
-       this.clientID = clientID;
-       this.subscriptions = new Subscription[60];
+    public Reception(){
+        this.subscriptions = new Subscription[60];
     }
 
     void subscribe(Client client, ZoneType zoneType, SubscriptionType subscriptionType) {
+        this.client = client;
+        this.zoneType = zoneType;
+        this.subscriptionType = subscriptionType;
         // проверки на тип абонимента
         if (subscriptionType == SubscriptionType.SINGLE && zoneType == ZoneType.GROUP) // не могут посещать групу по разовому
             throw new RuntimeException(" клиенты могут посещать бассейн и тренажерный зал ");
@@ -38,6 +39,7 @@ public class Reception {
 
 
         // также в зависимости от типа абонимента  вносим в выдаваемый абонимент время по которому будут проводиться занятия
+        int clientID = (int) (Math.random() * 1000); // генерирует одну и ту же цепочку при каждом вызове- поэтому вызываю здесь
         this.subscription = new Subscription(client, zoneType, subscriptionType,clientID);
 
         for (int i = 0; i < subscriptions.length; ++i) {
