@@ -20,7 +20,6 @@ public class Subscription {
         if (Objects.isNull(client))
             throw new IllegalArgumentException(Information.OBJECT_IS_NULL);
         this.client = client;
-        //this.zoneType = zoneType;
         this.subscriptionType = subscriptionType;
         setStartAndEndTime();
         this.clientID = clientID;

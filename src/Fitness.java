@@ -4,12 +4,10 @@ import java.util.Objects;
 public class Fitness {
     private LocalDateTime currentDate;
     private int currentHour;
-    private SubscriptionType subscriptionType;
-    private Client client;
     private Reception reception;
     private Zones zones;
     private Subscription subscription;
-    private Information information;
+    Information information;
 
     public Fitness() {
         this.zones = new Zones();// созданы три зоны
