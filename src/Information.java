@@ -6,4 +6,5 @@ public class Information {
     public static final String NO_ENTRY = " В данную зону по Вашему абонементу проити нельзя ";
     public static final String FIX_CLIENT = "Клиент зашел в фитнесс зал ---------------------- ";
     public static final String ALREADY_HERE = " Посетитель уже есть на зоне ";
+    public static final String NO_PASSAGE = " В эту зону проход воспрещен ";
 }

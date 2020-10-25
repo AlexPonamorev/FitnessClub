@@ -12,6 +12,7 @@ public class Subscription {
     private LocalTime endTime;   // конец времени возможного посещения
     private int clientID;
     private ZoneType[] zones; // разрешенные для посещения зоны
+
     public Subscription() {
     }
 
@@ -30,7 +31,9 @@ public class Subscription {
         return zoneType;
     }
 
-    public ZoneType[] getListOfAllowedZones(){ return  zones;}
+    public ZoneType[] getListOfAllowedZones() {
+        return zones;
+    }
 
     public int getClientID() {
         return clientID;
@@ -61,8 +64,9 @@ public class Subscription {
     public Client getClient() {
         return client;
     }
+
     @Override
     public String toString() {
-    return client.toString();
+        return client.toString();
     }
 }

@@ -65,24 +65,34 @@ public class Zones {
                     if (subscription.getZoneType() == ZoneType.GYM) {
                         detectClient(subscription.getClient(), ZoneType.GYM);
                         addPerson(gyM, subscription.getClientID());
-                    }
+                        addClient(gumClients, subscription.getClient());
+                    } else printError();
                 break;
             case GROUP:
                 if (IsThereIt(subscription.getListOfAllowedZones(), requestedZone))
                     if (subscription.getZoneType() == ZoneType.GROUP) {
                         detectClient(subscription.getClient(), ZoneType.GROUP);
                         addPerson(grouP, subscription.getClientID());
-                    }
+                        addClient(groupClients, subscription.getClient());
+                    } else printError();
             case POOL:
                 if (IsThereIt(subscription.getListOfAllowedZones(), requestedZone))
                     if (subscription.getZoneType() == ZoneType.POOL) {
                         detectClient(subscription.getClient(), ZoneType.POOL);
                         addPerson(pooL, subscription.getClientID());
-                    }
+                        addClient(poolClients, subscription.getClient());
+                    } else printError();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + requestedZone);
+
         }
     }
 
-    // не использую методов с шаблонными параметрами потому что не хочу)
+    private void printError() {
+        System.out.println(Information.NO_PASSAGE);
+    }
+
     // запись в картотеку нужной зоны
     private void addPerson(int[] clients, int ClientID) {
         for (int i = 0; i < clients.length; ++i) {

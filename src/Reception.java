@@ -25,7 +25,7 @@ public class Reception {
         return this.subscription;
     }
 
-    private  ZoneType[] myZones; // массив разрешенных зон
+    private ZoneType[] myZones; // массив разрешенных зон
 
     private void setMyZone(SubscriptionType subscriptionType) {
         switch (subscriptionType) {
@@ -60,7 +60,7 @@ public class Reception {
         int clientID = (int) (Math.random() * 1000); // генерирует одну и ту же цепочку при каждом вызове- поэтому вызываю здесь
         setMyZone(subscriptionType);
         // в оконцовке создаю абонимент для этого клиента
-        this.subscription = new Subscription(client, zoneType, subscriptionType, clientID, myZones );
+        this.subscription = new Subscription(client, zoneType, subscriptionType, clientID, myZones);
         // и заношу в картотеку
         for (int i = 0; i < subscriptions.length; ++i) {
             if (Objects.isNull(subscriptions[i])) {
