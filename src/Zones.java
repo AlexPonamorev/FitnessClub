@@ -1,11 +1,8 @@
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 
 public class Zones {
-    //ZoneType zoneType;
     private final int MAX = 20;
-    private Client client;
     private int[] pooL;
     private int[] gyM;
     private int[] grouP;
@@ -42,27 +39,46 @@ public class Zones {
         return false;
     }
 
-    public void addPerson(Subscription subscription, ZoneType zoneType, int currentDate) {
+    public static boolean IsThereIt(ZoneType[] myZone, ZoneType RequestedZone) {
+        for (int i = 0; i < myZone.length; ++i) {
+            if (myZone[i] == RequestedZone) return true;
+        }
+        return false;
+    }
 
-        //this.zoneType = zoneType;
+    public void addPerson(Subscription subscription, ZoneType requestedZone, int currentDate) {
+
+
         this.currentDate = currentDate;
 
         if (isNoValidTime(subscription)) {
             System.out.println(subscription.toString() + " " + Information.NO_TIME);
             return;
         }
-        if (subscription.getZoneType() != zoneType)
+
+        if (subscription.getZoneType() != requestedZone)
             System.out.println(subscription.toString() + " " + Information.NO_ENTRY);
 
-        if (subscription.getZoneType() == ZoneType.GYM) {
-            detectClient(subscription.getClient(), ZoneType.GYM);
-            addPerson(gyM, subscription.getClientID());
-        } else if (subscription.getZoneType() == ZoneType.GROUP) {
-            detectClient(subscription.getClient(), ZoneType.GROUP);
-            addPerson(grouP, subscription.getClientID());
-        } else if (subscription.getZoneType() == ZoneType.POOL) {
-            detectClient(subscription.getClient(), ZoneType.POOL);
-            addPerson(pooL, subscription.getClientID());
+        switch (requestedZone) {
+            case GYM:
+                if (IsThereIt(subscription.getListOfAllowedZones(), requestedZone))
+                    if (subscription.getZoneType() == ZoneType.GYM) {
+                        detectClient(subscription.getClient(), ZoneType.GYM);
+                        addPerson(gyM, subscription.getClientID());
+                    }
+                break;
+            case GROUP:
+                if (IsThereIt(subscription.getListOfAllowedZones(), requestedZone))
+                    if (subscription.getZoneType() == ZoneType.GROUP) {
+                        detectClient(subscription.getClient(), ZoneType.GROUP);
+                        addPerson(grouP, subscription.getClientID());
+                    }
+            case POOL:
+                if (IsThereIt(subscription.getListOfAllowedZones(), requestedZone))
+                    if (subscription.getZoneType() == ZoneType.POOL) {
+                        detectClient(subscription.getClient(), ZoneType.POOL);
+                        addPerson(pooL, subscription.getClientID());
+                    }
         }
     }
 
@@ -121,12 +137,12 @@ public class Zones {
         }
     }
 
-    public void closing(){
-        Arrays.fill(poolClients,null);
-        Arrays.fill(groupClients,null);
-        Arrays.fill(gumClients,null);
-        Arrays.fill(pooL,0);
-        Arrays.fill(gyM,0);
-        Arrays.fill(grouP,0);
+    public void closing() {
+        Arrays.fill(poolClients, null);
+        Arrays.fill(groupClients, null);
+        Arrays.fill(gumClients, null);
+        Arrays.fill(pooL, 0);
+        Arrays.fill(gyM, 0);
+        Arrays.fill(grouP, 0);
     }
 }

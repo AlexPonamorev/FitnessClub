@@ -6,28 +6,31 @@ import java.util.Objects;
 public class Subscription {
 
     private Client client;
-    private ZoneType zoneType;
+    private ZoneType zoneType;  // зона для возможного посещения
     private SubscriptionType subscriptionType;
     private LocalTime startTime;  //начало возможного посещения
     private LocalTime endTime;   // конец времени возможного посещения
     private int clientID;
-
+    private ZoneType[] zones; // разрешенные для посещения зоны
     public Subscription() {
     }
 
     // какой здесь модификатора если иего будут использовать только другие классы но не из main?
-    public Subscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType, int clientID) {
+    public Subscription(Client client, ZoneType zoneType, SubscriptionType subscriptionType, int clientID, ZoneType[] zones) {
         if (Objects.isNull(client))
             throw new IllegalArgumentException(Information.OBJECT_IS_NULL);
         this.client = client;
         this.subscriptionType = subscriptionType;
         setStartAndEndTime();
         this.clientID = clientID;
+        this.zones = zones;
     }
 
     public ZoneType getZoneType() {
         return zoneType;
     }
+
+    public ZoneType[] getListOfAllowedZones(){ return  zones;}
 
     public int getClientID() {
         return clientID;
